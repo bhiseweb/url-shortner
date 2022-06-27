@@ -1,24 +1,14 @@
-# README
+# URL-SHORTNER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+System Dependencies:
 
-Things you may want to cover:
+* Ruby version: ruby-3.0.1
+* Bundler version: 2.2.28
+  - `gem install bundler:2.2.28`
 
-* Ruby version
+# Installation
+- Just Run
+  - `bin/setup`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# For running the app
+- `rails s`
