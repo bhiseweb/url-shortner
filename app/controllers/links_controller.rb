@@ -1,9 +1,11 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :find_link, only: %i[ explore ]
+  before_action :authenticate_user!, except: %i[explore]
 
   # GET /links or /links.json
   def index
-    @links = Link.all
+    @links = current_user.links
   end
 
   # GET /links/1 or /links/1.json
@@ -12,16 +14,12 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
-    @link = Link.new
-  end
-
-  # GET /links/1/edit
-  def edit
+    @link = current_user.links.new
   end
 
   # POST /links or /links.json
   def create
-    @link = Link.new(link_params)
+    @link = current_user.links.new(link_params)
 
     respond_to do |format|
       if @link.save
@@ -34,26 +32,11 @@ class LinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /links/1 or /links/1.json
-  def update
-    respond_to do |format|
-      if @link.update(link_params)
-        format.html { redirect_to link_url(@link), notice: "Link was successfully updated." }
-        format.json { render :show, status: :ok, location: @link }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /links/1 or /links/1.json
-  def destroy
-    @link.destroy
-
-    respond_to do |format|
-      format.html { redirect_to links_url, notice: "Link was successfully destroyed." }
-      format.json { head :no_content }
+  def explore
+    if @link.present?
+      redirect_to @link.main_url, allow_other_host: true
+    else
+      redirect_to '/404'
     end
   end
 
@@ -63,8 +46,12 @@ class LinksController < ApplicationController
       @link = Link.find(params[:id])
     end
 
+    def find_link
+      @link = Link.find_by(token: params[:token])
+    end
+
     # Only allow a list of trusted parameters through.
     def link_params
-      params.require(:link).permit(:main_url, :token, :user_id, :clicks)
+      params.require(:link).permit(:main_url, :token)
     end
 end

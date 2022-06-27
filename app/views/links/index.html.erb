@@ -1,14 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Links</h1>
 
-<div id="links">
-  <% @links.each do |link| %>
-    <%= render link %>
-    <p>
-      <%= link_to "Show this link", link %>
-    </p>
-  <% end %>
+<div id="links" class="container">
+  <h1>Links</h1>
+  <%= link_to "New link", new_link_path %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"><strong>Main url:</strong></th>
+        <th scope="col"><strong>Token:</strong></th>
+        <th scope="col"><strong>Clicks:</strong></th>
+        <th scope="col"><strong>Action:</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @links.each do |link| %>
+        <%= render link %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New link", new_link_path %>

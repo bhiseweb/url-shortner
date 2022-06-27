@@ -4,7 +4,7 @@ class CreateLinks < ActiveRecord::Migration[7.0]
       t.string :main_url
       t.string :token
       t.references :user, null: false, foreign_key: true
-      t.integer :clicks
+      t.integer :clicks, default: 0
 
       t.timestamps
     end
