@@ -13,8 +13,8 @@
     <% end %>
 
     <div>
-      <%= form.label :main_url, class: "form-label" %>
-      <%= form.text_field :main_url, class: "form-control" %>
+      <%= form.label :main_url, class: "required-field" %>
+      <%= form.text_field :main_url, class: "form-control", required: true  %>
     </div>
 
     <div>
@@ -25,7 +25,9 @@
     <br>
 
     <div>
-      <%= form.submit %>
+      <div class="d-grid gap-2">
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
 <% end %>

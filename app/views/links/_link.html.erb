@@ -1,11 +1,22 @@
 <div id="<%= dom_id link %>">
 
   <tr>
-    <th scope="col"><%= link.main_url %></th>
-    <th scope="col"><%= link.token %></th>
-    <th scope="col"><%= link.clicks %></th>
-    <%if params[:action] == 'show' %>
-      <th scope="col"><%= link_to "Show", link %></th>
+    <td scope="col">
+      <%= link_to URI.parse(link.main_url).host, link.main_url %>
+    </td>
+
+    <td scope="col">
+      <%= short_url(link) %>
+    </td>
+
+    <td scope="col">
+      <%= link.clicks %>
+    </td>
+
+    <%if params[:action] == 'index' %>
+      <td scope="col">
+        <%= link_to "Show", link %>
+      </td>
     <%end%>
   </tr>
 </div>

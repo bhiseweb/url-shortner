@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_085322) do
     t.string "main_url"
     t.string "token"
     t.bigint "user_id", null: false
-    t.integer "clicks"
+    t.integer "clicks", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_links_on_user_id"

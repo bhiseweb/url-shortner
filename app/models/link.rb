@@ -1,6 +1,8 @@
 class Link < ApplicationRecord
   belongs_to :user
   before_save :add_token
+  validates :main_url, :presence => true
+
 
   def add_token
     if self.token.nil?
@@ -9,7 +11,7 @@ class Link < ApplicationRecord
   end
 
   def redirection_url
-    self.update(clicks: (clicks + 1))
+    self.update(clicks: (self.clicks + 1))
     main_url
   end
 end

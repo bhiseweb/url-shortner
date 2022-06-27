@@ -1,8 +1,12 @@
-<nav class="navbar bg-light">
+<nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <%= image_tag 'logo.png', { width: 30, height: 24, class: "d-inline-block align-text-top" } %>
       URL Shortner
     </a>
+
+    <div class="dropdown show">
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
+    </div>
   </div>
 </nav>

@@ -5,7 +5,7 @@ class LinksController < ApplicationController
 
   # GET /links or /links.json
   def index
-    @links = current_user.links
+    @links = current_user.links.order(clicks: :desc)
   end
 
   # GET /links/1 or /links/1.json
@@ -33,8 +33,8 @@ class LinksController < ApplicationController
   end
 
   def explore
-    if @link.present?
-      redirect_to @link.main_url, allow_other_host: true
+    if @link
+      redirect_to @link.redirection_url, allow_other_host: true
     else
       redirect_to '/404'
     end
